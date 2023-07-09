@@ -42,4 +42,6 @@ thoughtSchema
 // Initialize Thought model
 const Thought = model('Thought', thoughtSchema);
 
+console.log(formatDate(Date.now()));
+
 module.exports = Thought;
