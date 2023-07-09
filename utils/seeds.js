@@ -1,5 +1,6 @@
 const connection = require('../config/connection');
-const { User, Thoughts } = require('../models');
+const User = require('../models/User');
+const Thought = require('../models/Thought');
 const { getRandomName, getRandomThought } = require('./data');
 
 connection.on('error', (err) => err);
@@ -17,18 +18,24 @@ connection.once('open', async () => {
     }
 
     const users = [];
-    const thoughts = getRandomThoughts(10);
+    const thoughts = [];
 
     for (let i = 0; i < 10; i++) {
         const username = getRandomName();
-    
+        
+        const thoughts = getRandomThought(10);
+    console.log(users);
     users.push({ 
         username
+    });
+    console.log(thoughts);
+    thoughts.push({
+        thoughts
     });
     }   
 
     await User.collection.insertMany(users);
-    await Thoughts.collection.insertMany(thoughts);
+    await Thought.collection.insertMany(thoughts);
 
     // Loop through the saved thoughts, for reach thought, randomly assign a user as a friend
     console.table(users);

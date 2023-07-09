@@ -36,17 +36,17 @@ const thoughtReactions = [
     '😳',
 ];
 
-const users = [];
+const user = [];
 
 // Get a random item given an array
-const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Gets a random username
 const getRandomName = () =>
 `${getRandomArrItem(userNames)} ${getRandomArrItem(userNames)}`;
 
 //Function to generate random thoughts that we can add to the database
-const getRandomThoughts = (int) => {
+const getRandomThought = (int) => {
     let results = [];
     for (let i = 0; i < int; i++) {
         results.push({
@@ -75,4 +75,4 @@ const getThoughtReactions = (int) => {
 };
 
 // Export the functions for use in seeds.js
-module.exports = { getRandomName, getRandomThoughts };
+module.exports = { getRandomName, getRandomThought };
