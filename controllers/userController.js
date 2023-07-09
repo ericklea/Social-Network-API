@@ -55,8 +55,84 @@ const userController = {
         )
         .then((dbUserData) => {
             if (!dbUserData) {
-                return res.status(404).json({ message: })
+                return res.status(404).json({ message: 'No user found with this id!' });
+                
             }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    },
+
+    // delete a user and associated thoughts
+    deleteUserById(req, res) {
+        User.findOneAndDelete({ _id: req.params.userId })
+        .then((dbUserData) => {
+            if (!dbUserData) {
+                return res.status(404).json({ message: 'No user found with this id!' });
+                
+            }
+            return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+        })
+        .then(() => {
+            res.json({ message: 'User and associated thoughts deleted!' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         }
+        );
+    },
+
+    // add a friend to a user's friend list
+    addFriend(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.params.friendId } },
+            { runValidators: true, new: true }
+        )
+        .then((dbUserData) => {
+            if (!dbUserData) {
+                return res.status(404).json({ message: 'No user found with this id!' });
+                
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        }
+        );
+    },
+
+    // remove a friend from a user's friend list
+    removeFriend(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $pull: { friends: req.params.friendId } },
+            { runValidators: true, new: true }
+        )
+        .then((dbUserData) => {
+            if (!dbUserData) {
+                return res.status(404).json({ message: 'No user found with this id!' });
+                
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    },
+};
+
+module.exports = userController;
+
+
+
+
+
         
 
