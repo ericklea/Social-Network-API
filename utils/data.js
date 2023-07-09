@@ -36,7 +36,7 @@ const thoughtReactions = [
     '😳',
 ];
 
-const user = [];
+const users = [];
 
 // Get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -62,7 +62,7 @@ const getRandomThought = (int) => {
 // Create the reactions that will be added to the thoughts
 const getThoughtReactions = (int) => {
     if (int === 1) {
-        return getRandomArrItem(possibleReactions);
+        return getRandomArrItem(thoughtReactions);
     }
     let results = [];
     for (let i = 0; i < int; i++) {
@@ -75,4 +75,4 @@ const getThoughtReactions = (int) => {
 };
 
 // Export the functions for use in seeds.js
-module.exports = { getRandomName, getRandomThought };
+module.exports = { getRandomName, getRandomThought, getThoughtReactions };
