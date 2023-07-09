@@ -40,7 +40,7 @@ thoughtSchema
     });
 
 // Initialize Thought model
-const Thought = model('Thought', thoughtSchema);
+const Thought = model("Thought", thoughtSchema);
 
 console.log(formatDate(Date.now()));
 
