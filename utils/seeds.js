@@ -1,47 +1,46 @@
-const connection = require('../config/connection');
-const User = require('../models/User');
-const Thought = require('../models/Thought');
-const { getRandomName, getRandomThought } = require('./data');
+const connection = require('./config/connection');
+const { User, Thought } = require('./models');
+
+const users = [
+    {
+        userName: 'Alex123',
+        email: 'Alex123@gmail.com',
+        thought: 'I love pizza!'
+    },
+    {
+        userName: 'Bobby456',
+        email: 'Bobby456@gmail.com',
+        thought: 'I love tacos!'
+    },
+    {
+        userName: 'Cindy789',
+        email: 'Cindy789@gmail.com',
+        thought: 'I love burgers!'
+    },
+    {
+        userName: 'Derek012',
+        email: 'Derek012@gmail.com',
+        thought: 'I love hot dogs!'
+    },
+    {
+        userName: 'Erika345',
+        email: 'Erika345@gmail.com',
+        thought: 'I love ice cream!'
+    },
+]
 
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-    console.log('connected to database');
-    // Delete the collections if they exist
-    let thoughtsCheck = await connection.db.listCollections({ name: 'thoughts' }).toArray();
-    if (thoughtsCheck.length) {
-        await connection.dropCollection('thoughts');
-    }
-    let usersCheck = await connection.db.listCollections({ name: 'users' }).toArray();
-    if (usersCheck.length) {
-        await connection.dropCollection('users');
-    }
-
-    const users = [];
-    const thoughts = [];
-
-    for (let i = 0; i < 10; i++) {
-        const username = getRandomName();
-        
-        const thoughts = getRandomThought(10);
-    console.log(users);
-    users.push({ 
-        username
-    });
-    console.log(thoughts);
-    thoughts.push({
-        thoughts
-    });
-    }   
+    console.log('Database connected');
+    await Thought.deleteMany();
+    await User.deleteMany();
 
     await User.collection.insertMany(users);
-    await Thought.collection.insertMany(thoughts);
 
-    // Loop through the saved thoughts, for reach thought, randomly assign a user as a friend
-    console.table(users);
-    console.table(thoughts);
-    console.info('seeding done!');
+    console.info('Users seeded');
     process.exit(0);
 });
+
 
 
