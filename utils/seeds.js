@@ -1,31 +1,31 @@
-const connection = require('./config/connection');
-const { User } = require('./models');
+const connection = require('../config/connection');
+const { User, Thought, Reaction} = require('../models');
 
 const users = [
     {
         userName: 'Alex123',
         email: 'Alex123@gmail.com',
-        thought: []
+        thought: [],
     },
     {
         userName: 'Bobby456',
         email: 'Bobby456@gmail.com',
-        thought: []
+        thought: [],
     },
     {
         userName: 'Cindy789',
         email: 'Cindy789@gmail.com',
-        thought: []
+        thought: [],
     },
     {
         userName: 'Derek012',
         email: 'Derek012@gmail.com',
-        thought: []
+        thought: [],
     },
     {
         userName: 'Erika345',
         email: 'Erika345@gmail.com',
-        thought: []
+        thought: [],
     },
 ]
 
@@ -35,6 +35,7 @@ connection.once('open', async () => {
     console.log('Database connected');
     await Thought.deleteMany();
     await User.deleteMany();
+    await Reaction.deleteMany();
 
     await User.collection.insertMany(users);
 
