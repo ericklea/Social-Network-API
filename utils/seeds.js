@@ -5,27 +5,27 @@ const users = [
     {
         userName: 'Alex123',
         email: 'Alex123@gmail.com',
-        thought: 'I love pizza!'
+        thought: []
     },
     {
         userName: 'Bobby456',
         email: 'Bobby456@gmail.com',
-        thought: 'I love tacos!'
+        thought: []
     },
     {
         userName: 'Cindy789',
         email: 'Cindy789@gmail.com',
-        thought: 'I love burgers!'
+        thought: []
     },
     {
         userName: 'Derek012',
         email: 'Derek012@gmail.com',
-        thought: 'I love hot dogs!'
+        thought: []
     },
     {
         userName: 'Erika345',
         email: 'Erika345@gmail.com',
-        thought: 'I love ice cream!'
+        thought: []
     },
 ]
 
