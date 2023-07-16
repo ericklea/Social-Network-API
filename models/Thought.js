@@ -13,7 +13,7 @@ const reactionSchema = new Schema(
             required: true,
             maxLength: 280
         },
-        username: {
+        userName: {
             type: String,
             required: true
         },
@@ -45,7 +45,7 @@ const thoughtSchema = new Schema(
             // Use a getter method to format the timestamp on query
             get: createdAtVal => formatDate(createdAtVal)
         },
-        username: {
+        userName: {
             type: String,
             required: true
         },
