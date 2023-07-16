@@ -1,5 +1,5 @@
 const connection = require('../config/connection');
-const { User, Thought, Reaction} = require('../models');
+const { User, Thought } = require('../models');
 
 const users = [
     {
@@ -35,7 +35,6 @@ connection.once('open', async () => {
     console.log('Database connected');
     await Thought.deleteMany();
     await User.deleteMany();
-    await Reaction.deleteMany();
 
     await User.collection.insertMany(users);
 

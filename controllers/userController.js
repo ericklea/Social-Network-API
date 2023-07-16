@@ -16,8 +16,8 @@ module.exports = {
     },
 
     // get one user by id
-    getUserById({ params }, res) {
-        User.findOne({ _id: params.id })
+    getUserById(req, res) {
+        User.findOne({_id: req.params.userId})
         .select('-__v')
         .populate('friends')
         .populate('thoughts')
