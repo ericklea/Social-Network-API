@@ -1,6 +1,7 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 
+// To seed the database
 const users = [
     {
         userName: 'Alex123',
