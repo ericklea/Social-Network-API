@@ -4,10 +4,10 @@ const formatDate = require('../utils/date.js');
 // Schema to create Reaction model
 const reactionSchema = new Schema(
     {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
-        },
+        //reactionId: {
+           // type: Schema.Types.ObjectId,
+            //default: () => new Types.ObjectId()
+       // },
         reactionBody: {
             type: String,
             required: true,
@@ -54,6 +54,7 @@ const thoughtSchema = new Schema(
     {
         toJSON: {
             virtuals: true,
+            getters: true
         },
         id: false,
     }
